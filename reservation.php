@@ -11,7 +11,25 @@ if(isset($_POST['submit'])){
     $date = $_POST['date'];
     $destination = $_POST['destination'];
     
+    $sql = "insert into `travelagency`.`reservation` 
+    (fullname, number, guest, date, destination)
+    values ('$fullname', '$number', '$guest', '$date', '$destination')";
 
+  $result =  mysqli_query($connect, $sql);
+
+  if($result){
+      echo "
+        <script>
+            alert('form has been submitted');
+        </script>
+
+      ";
+      // header('location: index.html');
+  }else{
+    die(mysqli_connect_error());
+  }
+
+  mysqli_close($connect);
 
 }
 
@@ -137,16 +155,7 @@ https://inside-dev.com/tm-580-woox-travel
   </div>
 
   <!-- ==========Reservation Start============= -->
-  <?php
-
-    echo $fullname . "<br>";
-    echo $number . "<br>";
-    echo $guest . "<br>";
-    echo $date . "<br>";
-    echo $destination . "<br>";
-  
-  ?>
-
+ 
 
   <div class="reservation-form">
     <div class="container">
