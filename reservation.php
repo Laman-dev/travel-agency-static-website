@@ -1,36 +1,34 @@
-
 <?php
 
 include 'connection.php';
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
-    $fullname = $_POST['fullname'];
-    $number = $_POST['number'];
-    $guest = $_POST['guest'];
-    $date = $_POST['date'];
-    $destination = $_POST['destination'];
-    
-    $sql = "insert into `travelagency`.`reservation` 
+  $fullname = $_POST['fullname'];
+  $number = $_POST['number'];
+  $guest = $_POST['guest'];
+  $date = $_POST['date'];
+  $destination = $_POST['destination'];
+
+  $sql = "insert into `travelagency`.`reservation` 
     (fullname, number, guest, date, destination)
     values ('$fullname', '$number', '$guest', '$date', '$destination')";
 
   $result =  mysqli_query($connect, $sql);
 
-  if($result){
-      echo "
+  if ($result) {
+    echo "
         <script>
             alert('form has been submitted');
         </script>
 
       ";
-      // header('location: index.html');
-  }else{
+    // header('location: index.html');
+  } else {
     die(mysqli_connect_error());
   }
 
   mysqli_close($connect);
-
 }
 
 
@@ -41,32 +39,32 @@ if(isset($_POST['submit'])){
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>WoOx Travel Reservation Page</title>
+  <title>WoOx Travel Reservation Page</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-woox-travel.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-<!--
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-woox-travel.css">
+  <link rel="stylesheet" href="assets/css/owl.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+  <!--
 
 Inside Developers 580 Woox Travel
 
 https://inside-dev.com/tm-580-woox-travel
 
 -->
-  </head>
+</head>
 
 <body>
 
@@ -86,29 +84,29 @@ https://inside-dev.com/tm-580-woox-travel
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
-                        <img src="assets/images/logo.png" alt="">
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="deals.html">Deals</a></li>
-                        <li><a href="reservation.html" class="active">Reservation</a></li>
-                        <li><a href="reservation.html">Book Yours</a></li>
-                    </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.html" class="logo">
+              <img src="assets/images/logo.png" alt="">
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="deals.html">Deals</a></li>
+              <li><a href="reservation.html" class="active">Reservation</a></li>
+              <li><a href="reservation.html">Book Yours</a></li>
+            </ul>
+            <a class='menu-trigger'>
+              <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
         </div>
+      </div>
     </div>
   </header>
   <!-- ***** Header Area End ***** -->
@@ -155,7 +153,7 @@ https://inside-dev.com/tm-580-woox-travel
   </div>
 
   <!-- ==========Reservation Start============= -->
- 
+
 
   <div class="reservation-form">
     <div class="container">
@@ -166,60 +164,72 @@ https://inside-dev.com/tm-580-woox-travel
           </div>
         </div>
         <div class="col-lg-12">
-          <form id="reservation-form" name="gs" method="post" role="search">
-            <div class="row">
-              <div class="col-lg-12">
-                <h4>Make Your <em>Reservation</em> Through This <em>Form</em></h4>
-              </div>
-              <div class="col-lg-6">
-                  <fieldset>
-                      <label for="Name" class="form-label">Your Name</label>
-                      <input type="text" name="fullname" class="Name" placeholder="Enter Full Name" autocomplete="on" required>
-                  </fieldset>
-              </div>
-              <div class="col-lg-6">
-                <fieldset>
-                    <label for="Number" class="form-label">Your Phone Number</label>
-                    <input type="text" name="number" class="Number" placeholder="Ex. 03xx xxxxxxx" autocomplete="on" required>
-                </fieldset>
-              </div>
-              <div class="col-lg-6">
-                  <fieldset>
-                      <label for="chooseGuests" class="form-label">Number Of Guests</label>
-                      <select name="guest" class="form-select" aria-label="Default select example" id="chooseGuests" onChange="this.form.click()">
-                          <option selected>ex. 3 or 4 or 5</option>
-                          <option type="checkbox" name="option1" value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4+">4+</option>
-                      </select>
-                  </fieldset>
-              </div>
-              <div class="col-lg-6">
-                <fieldset>
-                    <label for="Number" class="form-label">Check In Date</label>
-                    <input type="date" name="date" class="date" required>
-                </fieldset>
-              </div>
-              <div class="col-lg-12">
-                  <fieldset>
-                      <label for="chooseDestination" class="form-label">Choose Your Destination</label>
-                      <select name="destination" class="form-select" aria-label="Default select example" id="chooseCategory" onChange="this.form.click()">
-                          <option selected>ex. Kashmir</option>
-                          <option value="Islamabad">Islamabad</option>
-                          <option value="Quetta Ziarat">Quetta Ziarat</option>
-                          <option value="Muree">Muree</option>
-                          <option value="Naran Kagan">Naran Kagan</option>
-                      </select>
-                  </fieldset>
-              </div>
-              <div class="col-lg-12">                        
-                  <fieldset>
-                      <button class="main-button" type="submit" name="submit">Make Your Reservation Now</button>
-                  </fieldset>
-              </div>
-            </div>
-          </form>
+          <form id="reservation-form" name="gs" method="post" role="search" onsubmit="return validateForm();">
+  <div class="row">
+    <div class="col-lg-12">
+      <h4>Make Your <em>Reservation</em> Through This <em>Form</em></h4>
+    </div>
+
+    <div class="col-lg-6">
+      <fieldset>
+        <label for="Name" class="form-label">Your Name</label>
+        <input type="text" name="fullname" id="fullname" class="form-control" placeholder="Enter Full Name" autocomplete="on">
+        <small id="fullnameError" class="text-danger" style="display: none;">This field is required.</small>
+      </fieldset>
+    </div>
+
+    <div class="col-lg-6">
+      <fieldset>
+        <label for="Number" class="form-label">Your Phone Number</label>
+        <input type="text" name="number" id="number" class="form-control" placeholder="Ex. 03xx xxxxxxx" autocomplete="on">
+        <small id="numberError" class="text-danger" style="display: none;">Please enter a valid phone number (e.g., 03001234567).</small>
+      </fieldset>
+    </div>
+
+    <div class="col-lg-6">
+      <fieldset>
+        <label for="chooseGuests" class="form-label">Number Of Guests</label>
+        <select name="guest" id="guest" class="form-select">
+          <option value="" selected disabled>ex. 3 or 4 or 5</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4+">4+</option>
+        </select>
+        <small id="guestError" class="text-danger" style="display: none;">Please select the number of guests.</small>
+      </fieldset>
+    </div>
+
+    <div class="col-lg-6">
+      <fieldset>
+        <label for="date" class="form-label">Check In Date</label>
+        <input type="date" name="date" id="date" class="form-control">
+        <small id="dateError" class="text-danger" style="display: none;">Please select a check-in date.</small>
+      </fieldset>
+    </div>
+
+    <div class="col-lg-12">
+      <fieldset>
+        <label for="chooseDestination" class="form-label">Choose Your Destination</label>
+        <select name="destination" id="destination" class="form-select">
+          <option value="" selected disabled>ex. Kashmir</option>
+          <option value="Islamabad">Islamabad</option>
+          <option value="Quetta Ziarat">Quetta Ziarat</option>
+          <option value="Muree">Muree</option>
+          <option value="Naran Kagan">Naran Kagan</option>
+        </select>
+        <small id="destinationError" class="text-danger" style="display: none;">Please choose a destination.</small>
+      </fieldset>
+    </div>
+
+    <div class="col-lg-12">
+      <fieldset>
+        <button class="main-button" type="submit" name="submit">Make Your Reservation Now</button>
+      </fieldset>
+    </div>
+  </div>
+</form>
+
         </div>
       </div>
     </div>
@@ -233,8 +243,9 @@ https://inside-dev.com/tm-580-woox-travel
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <p>Copyright © 2036 <a href="#">WoOx Travel</a> Company. All rights reserved. 
-          <br>Design: <a href="https://inside-dev.com" target="_blank" title="free CSS Designs">Inside Developers</a></p>
+          <p>Copyright © 2036 <a href="#">WoOx Travel</a> Company. All rights reserved.
+            <br>Design: <a href="https://inside-dev.com" target="_blank" title="free CSS Designs">Inside Developers</a>
+          </p>
         </div>
       </div>
     </div>
@@ -254,12 +265,74 @@ https://inside-dev.com/tm-580-woox-travel
   <script src="assets/js/custom.js"></script>
 
   <script>
-    $(".option").click(function(){
+    $(".option").click(function() {
       $(".option").removeClass("active");
-      $(this).addClass("active"); 
+      $(this).addClass("active");
     });
+
+function validateForm() {
+  let isValid = true;
+
+  const fields = ['fullname', 'number', 'guest', 'date', 'destination'];
+
+  // Reset all borders and hide errors
+  fields.forEach(id => {
+    document.getElementById(id).style.border = '';
+    const errorElement = document.getElementById(id + 'Error');
+    if (errorElement) {
+      errorElement.style.display = 'none';
+    }
+  });
+
+  // Name
+  const name = document.getElementById('fullname');
+  if (name.value.trim() === '') {
+    name.style.border = '2px solid red';
+    document.getElementById('fullnameError').style.display = 'block';
+    isValid = false;
+  }
+
+  // Phone
+  const phone = document.getElementById('number');
+  const phonePattern = /^03[0-9]{2}[0-9]{7}$/;
+  if (!phonePattern.test(phone.value.trim())) {
+    phone.style.border = '2px solid red';
+    document.getElementById('numberError').style.display = 'block';
+    isValid = false;
+  }
+
+  // Guests
+  const guest = document.getElementById('guest');
+  if (guest.value === '') {
+    guest.style.border = '2px solid red';
+    document.getElementById('guestError').style.display = 'block';
+    isValid = false;
+  }
+
+  // Date
+  const date = document.getElementById('date');
+  if (date.value === '') {
+    date.style.border = '2px solid red';
+    document.getElementById('dateError').style.display = 'block';
+    isValid = false;
+  }
+
+  // Destination
+  const destination = document.getElementById('destination');
+  if (destination.value === '') {
+    destination.style.border = '2px solid red';
+    document.getElementById('destinationError').style.display = 'block';
+    isValid = false;
+  }
+
+  return isValid;
+}
+
+
+
+
   </script>
 
-  </body>
+</body>
 
 </html>
